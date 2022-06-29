@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 import Banner from "../components/banner";
@@ -20,6 +21,16 @@ export default function Home() {
           buttonText="View nearby theaters"
           handleOnClick={bannerButtonClick}
         />
+
+        <div className={styles.heroImage}>
+          <Image
+            className={styles.svg}
+            src="/static/cinema-theater-svgrepo-com.svg"
+            width={300}
+            height={300}
+            alt="Movie Theater Art"
+          ></Image>
+        </div>
       </main>
     </div>
   );

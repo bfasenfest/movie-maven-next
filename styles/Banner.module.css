@@ -12,12 +12,23 @@
 }
 
 .title1 {
-  color: rgba(249, 250, 251, 1);
+  color: rgb(251, 249, 251);
+  transition: all 0.5s ease;
+}
+
+.title1:hover {
+  scale: 1.1;
+  transform: scaleY(1.4);
 }
 
 .title2 {
   display: block;
+  transition: all 0.5s ease;
   color: var(--text-purple);
+}
+
+.title2:hover {
+  transform: scaleY(1.4);
 }
 
 .subTitle {
