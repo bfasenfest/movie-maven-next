@@ -3,6 +3,11 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 import Banner from "../components/banner";
+import { Grid, Center } from "@mantine/core";
+import TheaterCard from "../components/card";
+
+import STORES from "../data/coffee-stores.json";
+import { ST } from "next/dist/shared/lib/utils";
 
 export default function Home() {
   const bannerButtonClick = () => {
@@ -31,6 +36,22 @@ export default function Home() {
             alt="Movie Theater Art"
           ></Image>
         </div>
+
+        <Center>
+          <Grid grow>
+            {STORES.map((store) => {
+              return (
+                <Grid.Col xs={6} md={4} lg={3} key={store.id}>
+                  <TheaterCard
+                    imgUrl={store.imgUrl}
+                    title={store.name}
+                    link={`/movie-theater/${store.id}`}
+                  />
+                </Grid.Col>
+              );
+            })}
+          </Grid>
+        </Center>
       </main>
     </div>
   );
