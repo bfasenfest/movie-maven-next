@@ -13,6 +13,11 @@
   padding-right: 1rem /* 16px */;
 }
 
+.theaterHeading {
+  font-size: 2.25rem;
+  font-weight: bolder;
+}
+
 .heroImage {
   position: absolute;
   top: 50px;

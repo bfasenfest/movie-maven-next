@@ -4,12 +4,17 @@ import styles from "../styles/Home.module.css";
 
 import Banner from "../components/banner";
 import { Grid, Center } from "@mantine/core";
-import TheaterCard from "../components/card";
+import TheaterCard from "../components/theater-card";
 
 import STORES from "../data/coffee-stores.json";
-import { ST } from "next/dist/shared/lib/utils";
 
-export default function Home() {
+export async function getStaticProps(context) {
+  return {
+    props: { theaters: STORES }, // will be passed to the page component as props
+  };
+}
+
+export default function Home(props) {
   const bannerButtonClick = () => {
     console.log("I was clicked");
   };
@@ -36,22 +41,26 @@ export default function Home() {
             alt="Movie Theater Art"
           ></Image>
         </div>
-
-        <Center>
-          <Grid grow>
-            {STORES.map((store) => {
-              return (
-                <Grid.Col xs={6} md={4} lg={3} key={store.id}>
-                  <TheaterCard
-                    imgUrl={store.imgUrl}
-                    title={store.name}
-                    link={`/movie-theater/${store.id}`}
-                  />
-                </Grid.Col>
-              );
-            })}
-          </Grid>
-        </Center>
+        {props.theaters.length > 0 && (
+          <>
+            <h1 className={styles.theaterHeading}>Other Theaters</h1>
+            <Center>
+              <Grid grow>
+                {props.theaters.map((store) => {
+                  return (
+                    <Grid.Col xs={6} md={4} lg={3} key={store.id}>
+                      <TheaterCard
+                        imgUrl={store.imgUrl}
+                        title={store.name}
+                        link={`/movie-theater/${store.id}`}
+                      />
+                    </Grid.Col>
+                  );
+                })}
+              </Grid>
+            </Center>
+          </>
+        )}
       </main>
     </div>
   );
